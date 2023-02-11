@@ -27,9 +27,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const s3Client = new S3Client({
     region: "us-west-2",
     credentials: {
-      accessKeyId: process.env.ACCESS_KEY_ID as string,
-      secretAccessKey: process.env.SECRET_ACCESS_KEY as string,
-      sessionToken: process.env.SESSION_TOKEN as string,
+      accessKeyId: process.env.SSR_ACCESS_KEY_ID as string,
+      secretAccessKey: process.env.SSR_SECRET_ACCESS_KEY as string,
     },
   });
 
