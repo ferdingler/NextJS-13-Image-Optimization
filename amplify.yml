@@ -8,6 +8,7 @@ frontend:
       commands:
         - env | grep -e SSR_ACCESS_KEY_ID -e SSR_SECRET_ACCESS_KEY -e IMAGE_S3_BUCKET -e IMAGE_S3_KEY >> .env
         - npm run build
+        - mv server.js .next/standalone
   artifacts:
     baseDirectory: .next
     files:
