@@ -16,7 +16,9 @@ let handler;
 const server = http.createServer(async (req, res) => {
   try {
     console.log("next server handling request", JSON.stringify(req.url));
+    console.log("next server received headers", JSON.stringify(req.headers));
     await handler(req, res);
+    console.log("next server returning response", JSON.stringify(res.headers));
   } catch (err) {
     console.error(err);
     res.statusCode = 500;
