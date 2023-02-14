@@ -17,7 +17,27 @@ const server = http.createServer(async (req, res) => {
   try {
     console.log("next server handling request", JSON.stringify(req.url));
     console.log("next server received headers", JSON.stringify(req.headers));
-    await handler(req, res);
+    
+    const url = new URL("http://localhost:3000" + req.url);
+    const params = new URLSearchParams(url.search);
+    const queryParams = {};
+
+    for (const [key, value] of params.entries()) {
+      queryParams[key] = value;
+    }
+
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.write(
+      JSON.stringify({
+        queryParams: queryParams,
+        path: url.pathname,
+        headers: req.headers,
+      })
+    );
+    
+    res.end();
+
+    // await handler(req, res);
     console.log("next server returning response", JSON.stringify(res.headers));
   } catch (err) {
     console.error(err);
