@@ -15,9 +15,6 @@ let handler;
 
 const server = http.createServer(async (req, res) => {
   try {
-    console.log("next server handling request", JSON.stringify(req.url));
-    console.log("next server received headers", JSON.stringify(req.headers));
-    
     const url = new URL("http://localhost:3000" + req.url);
     const params = new URLSearchParams(url.search);
     const queryParams = {};
@@ -26,18 +23,22 @@ const server = http.createServer(async (req, res) => {
       queryParams[key] = value;
     }
 
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.write(
-      JSON.stringify({
-        queryParams: queryParams,
-        path: url.pathname,
-        headers: req.headers,
-      })
-    );
-    
-    res.end();
+    console.log("next server handling request", JSON.stringify(req.url));
+    console.log("next server received headers", JSON.stringify(req.headers));
+    console.log("next server received query params", JSON.stringify(queryParams));
 
-    // await handler(req, res);
+    // res.writeHead(200, { "Content-Type": "application/json" });
+    // res.write(
+    //   JSON.stringify({
+    //     queryParams: queryParams,
+    //     path: url.pathname,
+    //     headers: req.headers,
+    //   })
+    // );
+    
+    // res.end();
+
+    await handler(req, res);
     console.log("next server returning response", JSON.stringify(res.headers));
   } catch (err) {
     console.error(err);
