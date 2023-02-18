@@ -39,7 +39,6 @@ const server = http.createServer(async (req, res) => {
     // res.end();
 
     await handler(req, res);
-    console.log("next server returning response", JSON.stringify(res.headers));
   } catch (err) {
     console.error(err);
     res.statusCode = 500;
