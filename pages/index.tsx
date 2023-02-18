@@ -95,6 +95,20 @@ export default function Home() {
               Image optimization with a remote iamge from a presigned URL.
             </p>
           </Link>
+
+          <div
+            className={styles.card}
+          >
+            <h2 className={inter.className}>
+              Heavy Images <span>-&gt;</span>
+            </h2>
+            <p className={inter.className}>
+              <Link href={"/heavy/abenezer"}>Abenezer</Link> - 
+              <Link href={"/heavy/samsung1"}>Samsung1</Link> - 
+              <Link href={"/heavy/samsung12"}>Samsung2</Link> - 
+              <Link href={"/heavy/swainson"}>Swainson</Link>
+            </p>
+          </div>
         </div>
       </main>
     </>
